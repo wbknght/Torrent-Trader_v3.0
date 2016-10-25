@@ -243,11 +243,13 @@ function stdhead($title = "") {
     if (!$CURUSER)
         guestadd();
 
-    if ($title == "")
+    if ($title == ""){
         $title = $site_config['SITENAME'];
-    else
+        $page = "Home";
+    }else{
         $title = $site_config['SITENAME']. " : ". htmlspecialchars($title);
-
+        $page = htmlspecialchars($title);
+    }
     require_once("themes/" . $THEME . "/block.php");
     require_once("themes/" . $THEME . "/header.php");
 }
@@ -320,6 +322,54 @@ function show_error_msg($title, $message, $wrapper = "1") {
 
     if ($wrapper){
         stdfoot();
+        die();
+    }
+}
+
+function ajax_show_error_msg($title, $message, $wrapper = "1") {
+    if ($wrapper) {
+        ob_start();
+        ob_clean();
+    }
+	
+    echo '<div id="overlay" style="position: fixed; z-index: 10000; top: 30px; left: 605px; display: block;">
+        <div class="overlay_header">
+            <div class="close"></div>
+            '.$title.'
+        </div>
+        <div class="overlay_text">
+            <div class="error" header="'.$title.'">
+                '.$message.'
+            </div>
+        </div>
+        <div class="overlay_footer"></div>
+    </div>';
+
+    if ($wrapper){
+        die();
+    }
+}
+
+function ajax_show_infos_msg($title, $message, $wrapper = "1") {
+    if ($wrapper) {
+        ob_start();
+        ob_clean();
+    }
+
+    echo '<div id="overlay" style="position: fixed; z-index: 10000; top: 30px; left: 605px; display: block;">
+        <div class="overlay_header">
+            <div class="close"></div>
+            '.$title.'
+        </div>
+        <div class="overlay_text">
+            <div class="done" header="'.$title.'">
+                '.$message.'
+            </div>
+        </div>
+        <div class="overlay_footer"></div>
+    </div>';
+
+    if ($wrapper){
         die();
     }
 }

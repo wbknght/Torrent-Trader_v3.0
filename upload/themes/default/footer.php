@@ -91,15 +91,15 @@ var TSUESettings =
 	memberTimezone: 1,
 	memberDST: 0,
 	stKey: "0-1475755390-fa47ce9292f5ba0019c504f1cc77748cbc51b6e5",
-	website_title: "Templateshares Ultimate Edition | TSUE",
-	website_url: "localhost",
-	theme_dir: "http://templateshares-ue.net/tsue/styles/default/",
+	website_title: "Torrent Trader V3.0 Beta | TTV3",
+	website_url: "http://ttv3.mavitrine.ovh/",
+	theme_dir: "http://ttv3.mavitrine.ovh/themes/default/",
 	website_active: "1",
 	website_resize_images_max_width: "665",
 	website_resize_images_max_height: "665",
 	ajaxHolderID: 'ajaxloader',
 	ajaxLoaderImage: '<img src="http://templateshares-ue.net/tsue/styles/default/ajax/fb_ajax-loader.gif" class="ajaxLoaderImage">',
-	security_enable_captcha: "1",
+	security_enable_captcha: "0",
 
 	shoutbox_enabled: 1,
 	irtm_enabled: 0,
@@ -118,21 +118,28 @@ if (strpos($_SERVER['REQUEST_URI'], '?') !== false){
 	$scripturl = $_SERVER['REQUEST_URI'];
 }
 		?><script type="text/javascript" src="../../js/jquery.js"></script>
-		<script type="text/javascript" src="../../js/tt.js"></script><?php
-if ($scripturl == "/index.php"){
-		?><script type="text/javascript" src="../../js/login.js"></script>
-		<script type="text/javascript" src="../../js/signup.js"></script>
+		<script type="text/javascript" src="../../js/tt.js"></script>
+    <script type="text/javascript" src="../../js/login.js"></script><?php
+if ($scripturl == "/index.php" || $scripturl == "/account-signup.php"){
+		?><script type="text/javascript" src="../../js/signup.js"></script>
 		<script type="text/javascript" src="../../js/forgot_password.js"></script>
-		<script type="text/javascript" src="../../js/passwordstrength.js"></script>
-		<script type="text/javascript" src="../../js/donate.js"></script>
+		<script type="text/javascript" src="../../js/passwordstrength.js"></script><?php
+}elseif ($scripturl == "/index.php"){
+		?><script type="text/javascript" src="../../js/donate.js"></script>
 		<script type="text/javascript" src="../../js/shoutbox.js"></script>
 		<script type="text/javascript" src="../../js/news.js"></script>
 		<script type="text/javascript" src="../../js/poll.js"></script>
 		<script type="text/javascript" src="../../js/scrollable.js"></script><?php
-}elseif ($scripturl == "/membercp.php"){
+}elseif ($scripturl == "/membercp.php" || $scripturl == "/account-details.php"){
 		?><script type="text/javascript" src="../../js/passwordstrength.js"></script>
 		<script type="text/javascript" src="../../js/membercp.js"></script>
+        <script type="text/javascript" src="../../js/comments.js"></script>
+        <script type="text/javascript" src="../../js/profile.js"></script>
 		<script type="text/javascript" src="../../js/messages.js"></script><?php
+}elseif ($scripturl == "/faq.php"){
+	?><script type="text/javascript" src="../../js/faq.js"></script>
+	<script type="text/javascript">function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');}</script>
+	<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><?php
 }
 
 		?><script type="text/javascript" src="http://templateshares-ue.net/tsue/js/tiny_mce/tiny_mce_gzip.js?lv=2.3"></script>

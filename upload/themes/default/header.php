@@ -3,7 +3,7 @@
 	<head>
 		<!--<noscript><meta http-equiv="refresh" content="0; URL=<?php echo $site_config['SITEURL']; ?>" /></noscript>-->
 		<base href="<?php echo $site_config['SITEURL']; ?>" />
-		<title>TorrentTrader v3 | TTv3</title>
+		<title><?php echo $title; ?></title>
 		<meta charset="<?php echo $site_config["CHARSET"]; ?>" />
 		<meta name="generator" content="tt3 <?php echo $site_config['ttversion']; ?>" />
 		<meta name="description" content="TTv3 | The most powerful CMS software. Fast. Secure. Social. Build your own website today." />
@@ -13,7 +13,33 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 		<!-- CSS -->
 		<!-- Theme css -->
-		<link rel="stylesheet" href="http://templateshares-ue.net/tsue/style.php?lv=2.3&l=style,fancybox,jqueryTools,forums,fileuploader,tinymce_ui,thread_prefixes,comments,downloads,image_gallery,extra,menu,ajax,shoutbox,staffDropDownMenu,upcomingReleases,staffOnlineNow,subtitles,oneStepUpload,mixed,topDonors,fls,memberCard,plugin_torrent_categories,members,donations,responsive" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/themes/default/css/style.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/themes/default/css/jqueryTools.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/themes/default/css/forums.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/themes/default/css/fileuploader.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/themes/default/css/tinymce_ui.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/themes/default/css/thread_prefixes.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/themes/default/css/comments.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/themes/default/css/downloads.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/themes/default/css/image_gallery.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/themes/default/css/extra.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/themes/default/css/menu.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/themes/default/css/ajax.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/themes/default/css/shoutbox.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/themes/default/css/staffDropDownMenu.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/themes/default/css/upcomingReleases.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/themes/default/css/staffOnlineNow.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/themes/default/css/subtitles.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/themes/default/css/oneStepUpload.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/themes/default/css/mixed.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/themes/default/css/topDonors.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/themes/default/css/fls.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/themes/default/css/memberCard.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/themes/default/css/plugin_torrent_categories.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/themes/default/css/members.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/themes/default/css/donations.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/themes/default/css/responsive.css" type="text/css" media="screen" />
+		
 		<link rel="Shortcut Icon" href="http://templateshares-ue.net/tsue/favicon.ico?lv=2.3" type="image/x-icon" />
 		<!-- JS -->
 		<script type="text/javascript" src="/backend/java_klappe.js"></script>
@@ -343,16 +369,27 @@
 
 					<!-- start #breadcrumb -->
 					<div class="rcrumbs" id="breadcrumbs">
-						<ul>
-							<li><a href="/index.php">Home</a></li>
-						</ul>
+						<ul><?php
+                            if ($page == "forums")
+                                echo '<li><a href="/index.php">Home</a><span class="divider">></span></li><li><a href="/forums.php">Forums</a></li>';
+                            else
+                                echo '<li><a href="/index.php">'.$page.'</a></li>';
+						?></ul>
 					</div>
 					<!-- end #breadcrumb -->
 
 					<!-- start #inner -->
 					<div id="inner">
-						<div id="container">
-							<div id="content" class="marginRightClass">
-    <?php
-   //print (T_("<font color='white'>Howdy!</font>")."&nbsp;&nbsp;".class_user($CURUSER[username])."");
+						<div id="container"><?php
+                            if (strpos($_SERVER['REQUEST_URI'], '?') !== false){
+                                $scripturl =  substr($_SERVER['REQUEST_URI'], 0, strpos($_SERVER['REQUEST_URI'], '?'));
+                            }else{
+                                $scripturl = $_SERVER['REQUEST_URI'];
+                            }
+                            
+                            if ($scripturl != "/forums.php"){
+                                echo '<div id="content" class="marginRightClass">';
+                            }else{
+                                echo '<div id="content" class="">';
+                            }
     ?>
